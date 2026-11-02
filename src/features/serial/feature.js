@@ -1,5 +1,6 @@
 const {ipcMain,app} = require('electron');
 const {TCPBinding} = require('./tcp-binding')
+const {createRfcommBinding, combineWithRfcomm} = require('./rfcomm-binding')
 const { autoDetect } = require('@serialport/bindings-cpp')
 const {IpcBinding,SerialIpcBinding,TCPIpcBinding} = require('./ipc-binding')
 const Feature = require("../base");
@@ -17,7 +18,8 @@ class SerialFeature extends Feature{
         this.isInitialized = false;
         this.bindings =  [
             {ifName: 'tcpip', native:TCPBinding, ipc: undefined},
-            {ifName: 'serial', native:autoDetect(), ipc: undefined}
+            // on macOS, Bluetooth Classic devices are additionally reachable via RFCOMM (rfcomm:<address>)
+            {ifName: 'serial', native:combineWithRfcomm(autoDetect(), createRfcommBinding()), ipc: undefined}
         ]
         this.ports = []
         

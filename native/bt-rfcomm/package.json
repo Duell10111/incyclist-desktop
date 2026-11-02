@@ -1,0 +1,13 @@
+{
+  "name": "incyclist-bt-rfcomm",
+  "version": "1.0.0",
+  "description": "Bluetooth Classic RFCOMM (Serial Port Profile) access on macOS via IOBluetooth",
+  "main": "index.js",
+  "private": true,
+  "license": "MIT",
+  "os": ["darwin"],
+  "gypfile": true,
+  "scripts": {
+    "install": "node-gyp rebuild"
+  }
+}

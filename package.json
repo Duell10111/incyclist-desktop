@@ -86,5 +86,8 @@
     "usb": {
       "node-addon-api": "8.6.0"
     }
+  },
+  "optionalDependencies": {
+    "incyclist-bt-rfcomm": "file:native/bt-rfcomm"
   }
 }
